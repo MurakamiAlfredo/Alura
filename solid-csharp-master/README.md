@@ -20,13 +20,13 @@ I -
 
 D - DIP - Dependency Inversion Principle (Principio da Inversão de Dependencia) - Melhorar a Qualidade do Acoplamento.
 
-   Acoplamentos sempre vão existir, porém temos que prezar pela qualidade do acoplamento. 
-     Acoplamentos Bons - Tipos Estaveis (API e Abstrações)
-     Acoplamentos Ruins - Tipo Instáveis (Implementações)
+      Acoplamentos sempre vão existir, porém temos que prezar pela qualidade do acoplamento. 
+        Acoplamentos Bons - Tipos Estaveis (API e Abstrações)
+        Acoplamentos Ruins - Tipo Instáveis (Implementações)
     
-   Criar abstrações para melhorar a qualidade do acoplamento.
-   Explicitar as dependencias do construtor para desacoplar.
+      Criar abstrações para melhorar a qualidade do acoplamento.
+      Explicitar as dependencias do construtor para desacoplar.
 
-   Explicitando a dependencia com outro tipo, precisa ser realizado a Injeção de Depencia(Quem Cria).
+      Explicitando a dependencia com outro tipo, precisa ser realizado a Injeção de Depencia(Quem Cria).
 
-   Inversão de Controle (IOC) - Direção da Depencia - Classe "perde" o controle e passa essa responsabildiade para outra.
+      Inversão de Controle (IOC) - Direção da Depencia - Classe "perde" o controle e passa essa responsabildiade para outra.
