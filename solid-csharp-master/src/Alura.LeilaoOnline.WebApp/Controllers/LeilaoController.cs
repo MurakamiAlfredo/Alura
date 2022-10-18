@@ -7,13 +7,13 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
 {
     public class LeilaoController : Controller
     {
-        LeilaoDao _daoLeilao;
-        CategoriaDao _daoCategoria;
+        ILeilaoDao _daoLeilao;
+        ICategoriaDao _daoCategoria;
        
-        public LeilaoController()
+        public LeilaoController(ILeilaoDao daoLeilao, ICategoriaDao daoCategoria)
         {
-            _daoLeilao = new LeilaoDao();
-            _daoCategoria = new CategoriaDao();
+            _daoLeilao = daoLeilao;
+            _daoCategoria = daoCategoria;
         }
 
         public IActionResult Index()

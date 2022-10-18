@@ -3,12 +3,12 @@ using System.Linq;
 using Alura.LeilaoOnline.WebApp.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Alura.LeilaoOnline.WebApp.Dados
+namespace Alura.LeilaoOnline.WebApp.Dados.EfCore
 {
-    public class CategoriaDao
+    public class CategoriaDaoComEfCore : ICategoriaDao
     {
         AppDbContext _context;
-        public CategoriaDao()
+        public CategoriaDaoComEfCore()
         {
             _context = new AppDbContext();
         }

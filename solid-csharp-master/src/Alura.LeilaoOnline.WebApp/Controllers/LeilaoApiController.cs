@@ -8,11 +8,11 @@ namespace Alura.LeilaoOnline.WebApp.Controllers
     [Route("/api/leiloes")]
     public class LeilaoApiController : ControllerBase
     {
-        LeilaoDao _dao;
+        ILeilaoDao _dao;
 
-        public LeilaoApiController()
+        public LeilaoApiController(ILeilaoDao daoLeilao)
         {
-            _dao = new LeilaoDao();
+            _dao = daoLeilao;
         }
 
         [HttpGet]

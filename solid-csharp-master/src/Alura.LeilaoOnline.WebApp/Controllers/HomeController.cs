@@ -1,18 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Alura.LeilaoOnline.WebApp.Dados;
 using Microsoft.AspNetCore.Routing;
+using Alura.LeilaoOnline.WebApp.Dados;
 
 namespace Alura.LeilaoOnline.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        LeilaoDao _daoLeilao;
-        CategoriaDao _daoCategoria;
+        ILeilaoDao _daoLeilao;
+        ICategoriaDao _daoCategoria;
 
-        public HomeController()
+        public HomeController(ILeilaoDao daoLeilao, ICategoriaDao daoCategoria)
         {
-            _daoLeilao = new LeilaoDao();
-            _daoCategoria = new CategoriaDao();
+            _daoLeilao = daoLeilao;
+            _daoCategoria = daoCategoria;
         }
 
         public IActionResult Index()
