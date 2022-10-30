@@ -14,43 +14,32 @@ namespace Alura.LeilaoOnline.WebApp.Dados.EfCore
             _context = new AppDbContext();
         }
 
-        public IEnumerable<Leilao> BuscarLeiloes()
-        {
-            return _context.Leiloes.Include(l => l.Categoria).ToList();
-        }
-
-        public Leilao BuscarLeilaoPorId(int id)
+        public Leilao BuscarPorId(int id)
         {
             return _context.Leiloes.Find(id);
         }
 
-        public void InserirLeilao(Leilao leilao)
+        public IEnumerable<Leilao> BuscarTodos()
         {
-            _context.Leiloes.Add(leilao);
+            return _context.Leiloes.Include(l => l.Categoria);
+        }
+
+        public void Inserir(Leilao obj)
+        {
+            _context.Leiloes.Add(obj);
             _context.SaveChanges();
         }
 
-        public void AtualizaLeilao(Leilao leilao)
+        public void Alterar(Leilao obj)
         {
-            _context.Leiloes.Update(leilao);
+            _context.Leiloes.Update(obj);
             _context.SaveChanges();
         }
 
-        public void RemoverLeilao(Leilao leilao)
+        public void Remover(Leilao leilao)
         {
             _context.Leiloes.Remove(leilao);
             _context.SaveChanges();
-        }
-
-        public IEnumerable<Leilao> ListaLeiloesPorTermo(string termo)
-        {
-            return _context.Leiloes
-                .Include(l => l.Categoria)
-                .Where(l => string.IsNullOrWhiteSpace(termo) ||
-                    l.Titulo.ToUpper().Contains(termo.ToUpper()) ||
-                    l.Descricao.ToUpper().Contains(termo.ToUpper()) ||
-                    l.Categoria.Descricao.ToUpper().Contains(termo.ToUpper())
-                ).ToList();
         }
     }
 }

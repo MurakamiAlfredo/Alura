@@ -5,12 +5,7 @@ using Alura.LeilaoOnline.WebApp.Models;
 
 namespace Alura.LeilaoOnline.WebApp.Dados
 {
-    public interface ICategoriaDao
+    public interface ICategoriaDao : IQuery<Categoria>
     {
-        IEnumerable<Categoria> BuscarCategorias();
-
-        Categoria BuscarCategoriaPorId(int id);
-
-        IEnumerable<Categoria> ListaCategoriasLeiloes();
     }
 }
