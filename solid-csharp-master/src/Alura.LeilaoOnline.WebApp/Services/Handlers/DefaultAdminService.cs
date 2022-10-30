@@ -18,54 +18,54 @@ namespace Alura.LeilaoOnline.WebApp.Services.Handlers
 
         public void CadastraLeilao(Leilao leilao)
         {
-            _dao.InserirLeilao(leilao);
+            _dao.Inserir(leilao);
         }
 
         public IEnumerable<Categoria> ConsultaCategorias()
         {
-            return _categoriaDao.BuscarCategorias();
+            return _categoriaDao.BuscarTodos();
         }
 
         public Leilao ConsultaLeilaoPorId(int id)
         {
-            return _dao.BuscarLeilaoPorId(id);
+            return _dao.BuscarPorId(id);
         }
 
         public IEnumerable<Leilao> ConsultaLeiloes()
         {
-            return _dao.BuscarLeiloes();
+            return _dao.BuscarTodos();
         }
 
         public void FinalizaPregraoDoLeilaoComId(int id)
         {
-            var leilao = _dao.BuscarLeilaoPorId(id);
+            var leilao = _dao.BuscarPorId(id);
             if (leilao != null && leilao.Situacao == SituacaoLeilao.Pregao)
             {
                 leilao.Situacao = SituacaoLeilao.Finalizado;
                 leilao.Termino = DateTime.Now;
-                _dao.AtualizaLeilao(leilao);
+                _dao.Alterar(leilao);
             }
         }
 
         public void IniciaPregaoDoLeilaoComId(int id)
         {
-            var leilao = _dao.BuscarLeilaoPorId(id);
+            var leilao = _dao.BuscarPorId(id);
             if (leilao != null && leilao.Situacao == SituacaoLeilao.Rascunho)
             {
                 leilao.Situacao = SituacaoLeilao.Pregao;
                 leilao.Inicio = DateTime.Now;
-                _dao.AtualizaLeilao(leilao);
+                _dao.Alterar(leilao);
             }
         }
 
         public void ModificaLeilao(Leilao leilao)
         {
-            _dao.AtualizaLeilao(leilao);
+            _dao.Alterar(leilao);
         }
 
         public void RemoveLeilao(Leilao leilao)
         {
-            _dao.RemoverLeilao(leilao);
+            _dao.Alterar(leilao);
         }
     }
 }
