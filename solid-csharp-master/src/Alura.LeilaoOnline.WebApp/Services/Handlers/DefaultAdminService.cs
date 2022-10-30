@@ -8,10 +8,12 @@ namespace Alura.LeilaoOnline.WebApp.Services.Handlers
     public class DefaultAdminService : IAdminService
     {
         ILeilaoDao _dao;
+        ICategoriaDao _categoriaDao;
 
-        public DefaultAdminService(ILeilaoDao dao)
+        public DefaultAdminService(ILeilaoDao dao, ICategoriaDao categoriaDao)
         {
             _dao = dao;
+            _categoriaDao = categoriaDao;
         }
 
         public void CadastraLeilao(Leilao leilao)
@@ -21,37 +23,49 @@ namespace Alura.LeilaoOnline.WebApp.Services.Handlers
 
         public IEnumerable<Categoria> ConsultaCategorias()
         {
-            throw new NotImplementedException();
+            return _categoriaDao.BuscarCategorias();
         }
 
         public Leilao ConsultaLeilaoPorId(int id)
         {
-            throw new NotImplementedException();
+            return _dao.BuscarLeilaoPorId(id);
         }
 
         public IEnumerable<Leilao> ConsultaLeiloes()
         {
-            throw new NotImplementedException();
+            return _dao.BuscarLeiloes();
         }
 
         public void FinalizaPregraoDoLeilaoComId(int id)
         {
-            throw new NotImplementedException();
+            var leilao = _dao.BuscarLeilaoPorId(id);
+            if (leilao != null && leilao.Situacao == SituacaoLeilao.Pregao)
+            {
+                leilao.Situacao = SituacaoLeilao.Finalizado;
+                leilao.Termino = DateTime.Now;
+                _dao.AtualizaLeilao(leilao);
+            }
         }
 
         public void IniciaPregaoDoLeilaoComId(int id)
         {
-            throw new NotImplementedException();
+            var leilao = _dao.BuscarLeilaoPorId(id);
+            if (leilao != null && leilao.Situacao == SituacaoLeilao.Rascunho)
+            {
+                leilao.Situacao = SituacaoLeilao.Pregao;
+                leilao.Inicio = DateTime.Now;
+                _dao.AtualizaLeilao(leilao);
+            }
         }
 
         public void ModificaLeilao(Leilao leilao)
         {
-            throw new NotImplementedException();
+            _dao.AtualizaLeilao(leilao);
         }
 
         public void RemoveLeilao(Leilao leilao)
         {
-            throw new NotImplementedException();
+            _dao.RemoverLeilao(leilao);
         }
     }
 }
